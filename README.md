@@ -2,16 +2,23 @@
 
 BeeStash is a campus marketplace prototype built with React and Vite. Accounts, listings, carts, and orders are stored in the browser. The app needs no database, environment variables, or payment service.
 
-## Build and run with Docker
+## Build and run with Docker Compose
 
-Start Docker Desktop or Docker Engine, then run these commands from the folder containing the Dockerfile.
+Start Docker Desktop, or Docker Engine with the Compose plugin. From the repository root, run:
 
 ```bash
-docker build -t beestash:local .
-docker run -d --rm --name beestash -p 127.0.0.1:5173:8080 beestash:local
+docker compose up -d --build
 ```
 
 Open [http://localhost:5173](http://localhost:5173). Stop any Vite dev server on port 5173 before starting the container. The image builds the app with Node.js 22 and serves the result with [unprivileged NGINX](https://github.com/nginx/docker-nginx-unprivileged) on container port 8080. For a public deployment, serve the app over HTTPS so the browser can use the Web Crypto API required by account flows.
+
+## Demo account
+
+- Email: `bina.nusantara@binus.ac.id`
+- Password: `beestash-demo`
+- Verification code: `28024`
+
+These are the defaults for a fresh browser. If you changed the demo account email in your profile, use the updated email.
 
 ## Verify, view logs, and stop
 
@@ -19,11 +26,11 @@ Open [/barang/kulkas](http://localhost:5173/barang/kulkas) directly to check tha
 
 ```bash
 curl -fsS -o /dev/null -w 'HTTP %{http_code}\n' http://localhost:5173/barang/kulkas
-docker logs beestash
-docker stop beestash
+docker compose logs beestash
+docker compose down
 ```
 
-After changing the code, stop the container if it is still running, then repeat the build and run commands. The `--rm` flag removes the stopped container.
+After changing the code, run `docker compose up -d --build` again to rebuild and update the container.
 
 ## Develop without Docker
 
