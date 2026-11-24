@@ -108,7 +108,9 @@ export function CategoryStrip({ selected }: { selected?: string }) {
     {canScroll && <button type="button" className="category-arrow category-previous" onClick={() => moveCategories(-1)} aria-label="Kategori sebelumnya"><DesignIcon file="Group383.svg" size={48} /></button>}
     <div className="category-strip" aria-label="Pilihan kategori" ref={stripRef}>{categories.map(category => (
       <Link key={category.name} to={selected === category.name ? '/barang#filter' : `${catalogUrl(category.name)}#filter`} aria-current={selected === category.name ? 'true' : undefined}>
-        <span className="category-photo"><img src={category.image} alt="" /></span>
+        <span className={category.hasCircularArtwork ? 'category-photo category-photo-native-circle' : 'category-photo'}>
+          <img src={category.image} alt="" />
+        </span>
         {category.name}
       </Link>
     ))}</div>

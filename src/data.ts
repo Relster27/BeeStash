@@ -28,7 +28,7 @@ export const categories = [
   ['Elektronik', 'Ellipse43.png'], ['Perabotan Kos', 'Image35.png'], ['Hobi', 'Image31.png'],
   ['Dekorasi', 'Image32.png'], ['Fashion', 'Image33.png'], ['Olahraga', 'Image51.png'],
   ['Tas', 'Image53.png'], ['Device', 'Image55.png'], ['Alat Masak', 'Image56.png'],
-].map(([name, file]) => ({ name, image: home(file) }))
+].map(([name, file]) => ({ name, image: home(file), hasCircularArtwork: file === 'Ellipse43.png' }))
 
 export const laptopDescription = [
   'Laptop MB Ne0 A18 Pro 8GB 256GB | 512GB\nGaransi Resmi Indonesia',
